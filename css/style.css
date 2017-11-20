@@ -6,7 +6,7 @@
 body {
   padding: 1em;
   font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  font-size: 15px;
+  font-size: 20px;
   color: #b9b9b9;
   background-color: #e3e3e3;
 }
@@ -239,6 +239,9 @@ select option {
 
 
 @media only screen and (max-width: 540px) {
+  .cnotainer {
+    width: 100%;
+  }
   .col-half {
     width: 100%;
     padding-right: 0;
