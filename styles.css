@@ -1,0 +1,115 @@
+body {
+  margin: 0;
+}
+
+.Slideshow {
+  width: 100%;
+  height: 400px;
+  overflow: hidden;
+}
+
+.CheckerBoard {
+  width: 100%;
+  height: 60vw;
+}
+.Fill {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden
+}
+.Fill img {
+    flex-shrink: 0;
+    object-fit: cover;
+    min-width: 100%;
+    min-height: 100%;
+}
+.Overlay {
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+.CheckerBoard div {
+  float: left;
+  width: 50%;
+  height: 50%;
+}
+.WhoWeAre h6, h1, h3, p {
+  margin-left: 5%;
+}
+
+.FAQs {
+   background-color: #1070b5;
+}
+
+.ThemeButton {
+  -webkit-border-radius: 28;
+  -moz-border-radius: 28;
+  border-radius: 28px;
+  font-family: Arial;
+  color: #FFF;
+  font-size: 20px;
+  text-align: center;
+  padding: 10px 20px 10px 20px;
+  border: solid #FFF 2px;
+  text-decoration: none;
+  transition: 0.5s;
+}
+
+.ThemeButton:hover {
+  background: #17F0E4;
+  border: none;
+  text-decoration: none;
+}
+
+.QuestionAnswerContainer h1, h3 {
+  width: 100%;
+  height:auto;
+  text-align: left;
+  font-family: MyFont;
+  color: white;
+  margin-top: 2%;
+
+}
+
+.signup-top-image {
+  width: calc(20% - 3px);
+  height: 100%;
+  position: relative;
+  float: left;
+  border: solid #1070b5 1.5px
+}
+.signup-form {
+  margin: 0 auto;
+}
+@media only screen and (max-width: 700px) {
+  .Slideshow {
+    height: 250px;
+  }
+  .CheckerBoard {
+    height: 200vh;
+  }
+  .CheckerBoard div {
+    width: 100%;
+    height: 25%;
+  }
+}
+@media only screen and (max-width: 1000px) {
+  .Slideshow {
+    height: 300px;
+  }
+  .CheckerBoard div {
+    height: 40vw;
+  }
+}
+@font-face {
+  font-family: MyFont;
+  src: url(MyFontRegular.woff2);
+}
+@font-face {
+  font-family: MyFontBold;
+  src: url(MyFontBold.woff2);
+}
+@font-face {
+  font-family: Fancy;
+  src: url(MyFancyFont.woff2);
+}
