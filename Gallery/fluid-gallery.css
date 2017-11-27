@@ -26,9 +26,6 @@ body {
     color: #999;
 }
 
-.tz-gallery {
-    padding: 40px;
-}
 
 /* Override bootstrap column paddings */
 .tz-gallery .row > div {
@@ -40,6 +37,7 @@ body {
     border-radius: 0;
     position: relative;
 }
+
 
 .tz-gallery .lightbox:before {
     position: absolute;
@@ -78,17 +76,20 @@ body {
 .baguetteBox-button {
     background-color: transparent !important;
 }
-.wide {
-  width: calc(100vw / 3);
-  height: calc(calc(750 / 1334) * calc(100vw / 3));
-}
-.tall {
-  height: calc(100vw / 3);
-  width: calc(calc(750 / 1334) * calc(100vw / 3));;
-}
 
 @media(max-width: 768px) {
+  .col-sm-3 {
+    width: calc(100% / 3);
+    float:left;
+  }
+
+  .col-md-3 {
+    width: calc(100% / 3);
+    float: left;
+  }
+}
+/*@media(max-width: 768px) {
     body {
         padding: 0;
     }
-}
+}*/

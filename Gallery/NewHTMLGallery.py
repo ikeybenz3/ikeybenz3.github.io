@@ -36,19 +36,29 @@ def openingStatements():
 
     print('<body>\n',file=file)
     print('<div class="container gallery-container">\n', file=file)
-    print('\t<div class="tz-gallery">\n\n\t\t<div class="row">\n', file=file)
+    print('\t<div class="tz-gallery">\n', file=file)
+    
+def totalHeightOfImages(images):
+    totalHeight = 0
+    for image in images:
+        width, height = Image.open("Images/"+image).size
+        totalHeight += height
+    return totalHeight
 
 def loadImages():
-    opening = '\t\t\t<div class="col-sm-4 col-md-4">'
+    opening = '\t\t\t<div class="col-sm-3 col-md-3" style="width: 100%;">'
     images = os.listdir('Images')
     removeVideos(images)
-    sortByHeightRatio(images)
-    for imageName in images:
-        href = '\t\t\t\t<a class="lightbox" href="Images/'+imageName+'">'
-        imgsrc = '\t\t\t\t\t<img src="Images/'+imageName+'" alt="'+imageName+'">'
-        print(opening, file=file)
-        print(href + "\n" + imgsrc + "\n\t\t\t\t</a>\n\t\t\t</div>\n", file=file)
-
+    for i in range(4):
+        print('\t\t<div class="row" style="width: calc(100% / 4); position: relative; margin-left: 15px; float: left;">\n', file=file)
+        for j in range(i, len(images), 4):
+            if j < len(images):
+                href = '\t\t\t\t<a class="lightbox" href="Images/'+images[j]+'">'
+                imgsrc = '\t\t\t\t\t<img src="Images/'+images[j]+'" alt="'+images[j]+'">'
+                print(opening, file=file)
+                print(href + "\n" + imgsrc + "\n\t\t\t\t</a>\n\t\t\t</div>\n", file=file)
+        print('\t\t</div>\n', file=file)
+    
 def closingStatements():
     print("\t\t</div>\n\n\t</div>\n\n</div>\n", file=file)
     print('<script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.8.1/baguetteBox.min.js"></script>', file = file)
