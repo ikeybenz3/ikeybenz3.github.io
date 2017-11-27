@@ -77,7 +77,7 @@ function uploadData() {
   var term = "Full Summer"
   var weeks = ""
   var days = ""
-  var payment = "Paid online"
+  var payment = "Paid Online"
   // Reasigns gender if female is selected
   if ($('#gender-female').prop("checked")) {
     gender = "Female";
@@ -112,8 +112,17 @@ function uploadData() {
 
   $.ajax({
     url: "https://docs.google.com/forms/d/e/1FAIpQLSfuyDUQfO2QuB43DE5I9BBa013P3-uJWf5Gx1fWj0LPUjG6TQ/formResponse",
-    data:{"entry.1848769469":fullName, "entry.897201892":email, "entry.1720437000":birthday, "entry.2046497122":gender, "entry.1415828457":term, "entry.678565997":weeks, "entry.362961921":days, "entry.1269116078":payment}, type:"POST", dataType:"xml", statusCode: {0: function() {
-      window.location.replace("thankYou.html");}, 200: function() {window.location.replace("thankYou.html");}}
+    data: {"entry.1848769469":fullName, "entry.897201892":email, "entry.1720437000":birthday, "entry.2046497122":gender, "entry.1415828457":term, "entry.678565997":weeks, "entry.362961921":days, "entry.1269116078":payment}, type:"POST", dataType:"xml",
+    statusCode: {0: afterSubmitHandler(payment), 200: afterSubmitHandler(payment)}
   });
-  document.getElementById('submitButton').style.display = 'none';
+    document.getElementById('submitButton').style.display = 'none';
+}
+
+function afterSubmitHandler(paymentPreference) {
+  if (paymentPreference == 'Paid Online') {
+    // Go to payment gateway
+    console.log("Going to payment gateway")
+  } else {
+    window.location.replace("../thankYou.html")
+  }
 }
