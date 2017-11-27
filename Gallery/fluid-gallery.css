@@ -2,9 +2,18 @@ body {
     background-color: #434c50;
     min-height: 100vh;
     font: normal 16px sans-serif;
-    padding: 40px 0;
+    padding: 10px 0;
 }
-
+h1 {
+  width: 100%;
+  text-align: center;
+  color: white;
+  font-family: Fancy;
+}
+@font-face {
+  font-family: Fancy;
+  src: url(../MyFancyFont.woff2);
+}
 .container.gallery-container {
     background-color: #fff;
     color: #35373a;
@@ -86,6 +95,9 @@ body {
   .col-md-3 {
     width: calc(100% / 3);
     float: left;
+  }
+  .container.gallery-container {
+    padding: 1px 1px;
   }
 }
 /*@media(max-width: 768px) {

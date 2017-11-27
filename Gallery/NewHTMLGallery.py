@@ -38,19 +38,18 @@ def openingStatements():
     print('<div class="container gallery-container">\n', file=file)
     print('\t<div class="tz-gallery">\n', file=file)
     
-def totalHeightOfImages(images):
-    totalHeight = 0
-    for image in images:
-        width, height = Image.open("Images/"+image).size
-        totalHeight += height
-    return totalHeight
 
 def loadImages():
     opening = '\t\t\t<div class="col-sm-3 col-md-3" style="width: 100%;">'
     images = os.listdir('Images')
     removeVideos(images)
+    sortByHeightRatio(images)
     for i in range(4):
-        print('\t\t<div class="row" style="width: calc(100% / 4); position: relative; margin-left: 15px; float: left;">\n', file=file)
+        rowOpening = '\t\t<div class="row" style="width: calc(100% / 4); position: relative; margin-left: 15px; float: left;">\n'
+        if i == 0:
+            rowOpening = '\t\t<div class="row" style="width: calc(100% / 4); position: relative; margin-left: 0px; float: left;">\n'
+        print(rowOpening, file=file)
+        
         for j in range(i, len(images), 4):
             if j < len(images):
                 href = '\t\t\t\t<a class="lightbox" href="Images/'+images[j]+'">'
