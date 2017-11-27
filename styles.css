@@ -97,6 +97,7 @@ body {
   }
   .CheckerBoard div {
     width: 100%;
+    height: 70vw;
   }
 }
 
