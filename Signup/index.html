@@ -20,11 +20,11 @@
     <div class="row">
       <h4>JSC Sign Up</h4>
       <div class="input-group input-group-icon">
-        <input id="userFullName" name="fullName" type="text" placeholder="Full Name"/>
+        <input class="textInput" id="userFullName" name="fullName" type="text" placeholder="Full Name"/>
         <div class="input-icon"><i class="fa fa-user"></i></div>
       </div>
       <div class="input-group input-group-icon">
-        <input id="userEmail" name="email" type="email" placeholder="Email Adress"/>
+        <input class="textInput" id="userEmail" name="email" type="email" placeholder="Email Adress"/>
         <div class="input-icon"><i class="fa fa-envelope"></i></div>
       </div>
     </div>
@@ -33,13 +33,13 @@
         <h4>Date of Birth</h4>
         <div class="input-group">
           <div class="col-third">
-            <input id="day" type="text" placeholder="DD"/>
+            <input class="textInput" id="day" type="text" placeholder="DD"/>
           </div>
           <div class="col-third">
-            <input id="month" type="text" placeholder="MM"/>
+            <input class="textInput" id="month" type="text" placeholder="MM"/>
           </div>
           <div class="col-third">
-            <input id="year" type="text" placeholder="YYYY"/>
+            <input class="textInput" id="year" type="text" placeholder="YYYY"/>
           </div>
         </div>
       </div>
@@ -109,7 +109,7 @@
     <div class="row">
       <h4>Payment Details</h4>
       <div class="input-group">
-        <input type="radio" name="payment-method" value="online" id="payment-method-online" checked="true"/>
+        <input type="radio" name="payment-method" value="online" id="payment-method-online"/>
         <label for="payment-method-online">Paying Online</label>
         <input type="radio" name="payment-method" value="atCamp" id="payment-method-atCamp"/>
         <label for="payment-method-atCamp">Paying At Camp</label>
@@ -117,13 +117,7 @@
 
 
     </div>
-    <div class="row">
-      <h4>Terms and Conditions</h4>
-      <div class="input-group">
-        <input type="checkbox" id="terms"/>
-        <label for="terms">I accept the terms and conditions for signing up to this service, and hereby confirm I have read the privacy policy.</label>
-      </div>
-    </div>
+
     <div class="row">
       <button type="button" name="button" onclick="uploadData()" id="submitButton">Submit</button>
     </div>
