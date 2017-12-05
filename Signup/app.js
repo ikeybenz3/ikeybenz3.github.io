@@ -110,8 +110,8 @@ function uploadData() {
   if ($('#payment-method-atCamp').prop("checked")) {
     payment = "At Camp"
   }
+
   if (allInputsAreFilledOut()) {
-    console.log(allInputsAreFilledOut());
     $.ajax({
       url: "https://docs.google.com/forms/d/e/1FAIpQLSfuyDUQfO2QuB43DE5I9BBa013P3-uJWf5Gx1fWj0LPUjG6TQ/formResponse",
       data: {"entry.1848769469":fullName, "entry.897201892":email, "entry.1720437000":birthday, "entry.2046497122":gender, "entry.1415828457":term, "entry.678565997":weeks, "entry.362961921":days, "entry.1269116078":payment}, type:"POST", dataType:"xml",
@@ -120,14 +120,32 @@ function uploadData() {
       document.getElementById('submitButton').style.display = 'none';
   } else {
     console.log("Couldn't submit");
+    alert("Make sure all inputs are filled out properly.");
   }
 
 }
 function allInputsAreFilledOut() {
-  const fullName = document.getElementById('userFullName')
-  if (fullName.value == "") {
-    console.log("Full name is not filled out!");
+  console.log("Checking All Input Fields.")
+  const textIds = ['userFullName', 'userEmail', 'day', 'month', 'year']
+  for (i in textIds) {if (document.getElementById(textIds[i]).value == "") {return false;}}
+  if (!$('#gender-male').prop('checked') && !$('#gender-female').prop('checked')) {return false;}
+  if (!$('#term-full-summer').prop('checked') && !$('#term-week').prop('checked') && !$('#term-day').prop('checked')) {return false;}
+  if ($('#term-week').prop('checked')) {
+    var weeksAreSelected = false;
+    for (var i = 1; i < 10; i++) {if($(`#week-${i}`).prop('checked')) {weeksAreSelected = true;}}
+    if (!weeksAreSelected) {return false;}
+  } else if ($('#term-day').prop('checked')) {
+    var weeksAreSelected = false;
+    var daysAreSelected = false;
+    const days = ['mon', 'tue', 'wed', 'thur', 'fri'];
+    for (var i = 1; i < 10; i++) {if($(`#week-${i}`).prop('checked')) {weeksAreSelected = true;}}
+    for (i in days) {if ($(`#day-${days[i]}`).prop('checked')) {daysAreSelected = true;}}
+    if (!weeksAreSelected) {return false;}
+    if (!daysAreSelected) {return false;}
   }
+  if (!$('#payment-method-online').prop('checked') && !$('#payment-method-atCamp').prop('checked')) {return false;}
+
+  return true;
 }
 function afterSubmitHandler(paymentPreference) {
   if (paymentPreference == 'Paid Online') {
