@@ -119,7 +119,6 @@ function uploadData() {
     });
       document.getElementById('submitButton').style.display = 'none';
   } else {
-    console.log("Couldn't submit");
     alert("Make sure all inputs are filled out properly.");
   }
 
