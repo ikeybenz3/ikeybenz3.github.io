@@ -3,6 +3,7 @@ $(document).ready(function() {
   $('input[type=checkbox]').click(calculateTermPrice);
   $('input[name=week]').click(ifOnlyOneWeekCanBeSelected);
   $('input[name=payment-method]').click(toggleSubmitButton);
+  $('input[value=full-summer]').click(function() {document.getElementById('priceTag').innerHTML = `Total: $3089.91`})
 })
 
 function toggleDropDownState() {
@@ -34,7 +35,7 @@ function toggleDropDownState() {
 }
 
 function calculateTermPrice() {
-  let price = 0;
+  let price = 0.00;
   if ($('#term-week').prop("checked")) {
     const weekStates = [1,2,3,4,5,6,7,8,9,10];
     let weeksChecked = 0;
@@ -43,7 +44,9 @@ function calculateTermPrice() {
         weeksChecked += 1;
       }
     }
-    price = weeksChecked * 300;
+    price = weeksChecked * 360;
+    // Set Paypal Daily Payment Form To Appropriate Amount Of Days
+    document.getElementById('weekFormSelect').selectedIndex = weeksChecked - 1;
 
   } else if ($('#term-day').prop("checked")) {
     const days = ['mon', 'tue', 'wed', 'thur', 'fri'];
@@ -53,9 +56,26 @@ function calculateTermPrice() {
         daysChecked += 1;
       }
     }
-    price = daysChecked * 75;
+    price = daysChecked * 80;
+    // Set Paypal Daily Payment Form To Appropriate Amount Of Days
+    document.getElementById('dayFormSelect').selectedIndex = daysChecked - 1;
   }
-  document.getElementById('term-price').innerHTML = `$${price}.00`
+  // Add Processing Charges To Bill
+  if (price == 80) {price = 82.70;}
+  else if (price == 160) {price = 165.09}
+  else if (price == 240) {price = 247.48}
+  else if (price == 320) {price = 309.27}
+  else if (price == 360) {price = 371.06}
+  else if (price == 720) {price = 741.81}
+  else if (price == 1080) {price = 1112.56}
+  else if (price == 1440) {price = 1483.82}
+  else if (price == 1800) {price = 1854.07}
+  else if (price == 2160) {price = 2224.82}
+  else if (price == 2520) {price = 2595.57}
+  else if (price == 2880) {price = 2966.32}
+  else if (price == 3000) {price = 3089.91}
+
+  document.getElementById('priceTag').innerHTML = `Total: $${price}`
   return price
 }
 function ifOnlyOneWeekCanBeSelected() {
@@ -115,11 +135,11 @@ function uploadData() {
     $.ajax({
       url: "https://docs.google.com/forms/d/e/1FAIpQLSfuyDUQfO2QuB43DE5I9BBa013P3-uJWf5Gx1fWj0LPUjG6TQ/formResponse",
       data: {"entry.1848769469":fullName, "entry.897201892":email, "entry.1720437000":birthday, "entry.2046497122":gender, "entry.1415828457":term, "entry.678565997":weeks, "entry.362961921":days, "entry.1269116078":payment}, type:"POST", dataType:"xml",
-      statusCode: {0: afterSubmitHandler(payment), 200: afterSubmitHandler(payment)}
+      statusCode: {0: afterSubmitHandler(payment, term)}
     });
       document.getElementById('submitButton').style.display = 'none';
   } else {
-    alert("Make sure all inputs are filled out properly.");
+    alert("Make sure all fields are filled out properly.");
   }
 
 }
@@ -146,10 +166,16 @@ function allInputsAreFilledOut() {
 
   return true;
 }
-function afterSubmitHandler(paymentPreference) {
+function afterSubmitHandler(paymentPreference, term) {
   if (paymentPreference == 'Paid Online') {
-    // Go to payment gateway
-    console.log("Going to payment gateway")
+    alert("Thanks for signing up for JSC!\nWe are now redirecting you to a secure payment page for payment.")
+    if (term == "Day") {
+      document.getElementById('dailyPaymentForm').submit();
+    } else if (term == "Week") {
+      document.getElementById('weeklyPaymentForm').submit();
+    } else if (term == "Full Summer") {
+      document.getElementById('fullSummerPaymentForm').submit();
+    }
   } else {
     window.location.replace("../thankyou.html")
   }
