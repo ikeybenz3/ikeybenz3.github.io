@@ -1,0 +1,70 @@
+body {
+  font-family: MyFont;
+  max-width: 1090pt;
+  margin-bottom: 20pt;
+}
+h1,h2,h3 {
+  color: #1070b5;
+}
+
+h1 {
+  font-size: 36pt;
+}
+h2 {
+  font-family: MyFontBold;
+  font-size: 32pt;
+  font-weight: bold;
+  font-style: underline;
+}
+h3 {
+  font-size: 28pt;
+  line-height: 0.5em;
+}
+p {
+  font-size: 18pt;
+}
+.TextContainer {
+  width: 90%;
+  margin-left: 5%;
+  position: relative;
+}
+.Bold {
+  font-family: MyFontBold;
+  color: black;
+}
+.ButtonContainer {
+  padding-top: 20pt;
+  width: 100%;
+  height: 75pt;
+  text-align: center;
+
+}
+.ThemeButton {
+  -webkit-border-radius: 28;
+  -moz-border-radius: 28;
+  border-radius: 28px;
+  font-family: Arial;
+  color: black;
+  font-size: 20px;
+  text-align: center;
+  padding: 10px 20px 10px 20px;
+  border: solid black 2px;
+  text-decoration: none;
+  transition: 0.5s;
+}
+.ThemeButton:hover {
+  background: #1070b5;
+  color: white;
+  border: none;
+  text-decoration: none;
+}
+
+
+@font-face {
+  src: url(MyFontRegular.woff2);
+  font-family: MyFont;
+}
+@font-face {
+  src: url(MyFontBold.woff2);
+  font-family: MyFontBold;
+}
