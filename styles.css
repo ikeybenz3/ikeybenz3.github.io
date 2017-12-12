@@ -7,8 +7,10 @@ body {
   height: 400px;
   overflow: hidden;
 }
-
-
+.Logo {
+  height: 75%;
+  margin-top: calc(25% / 2);
+}
 .CheckerBoard {
   width: 100%;
   display: table-cell;
@@ -53,7 +55,6 @@ body {
   margin-left: 5%;
 
 }
-
 .FAQs {
    background-color: #1070b5;
 }
@@ -88,16 +89,6 @@ body {
 
 }
 
-.signup-top-image {
-  width: calc(20% - 3px);
-  height: 100%;
-  position: relative;
-  float: left;
-  border: solid #1070b5 1.5px
-}
-.signup-form {
-  margin: 0 auto;
-}
 .Footer {
   height: calc(100px - 2em);
 }
@@ -135,11 +126,8 @@ body {
     width: 100%;
     height: 70vw;
   }
-  .FAQs {
-    height: auto;
-  }
   .Footer h1 {
-    font-size: 18px;
+    font-size: 15px;
   }
   .GalAnchorContainer a {
     font-size: 24;

@@ -11,7 +11,7 @@
 
     <div class="Slideshow" style="background-image: url(nathanBoss.jpg); background-size: cover; background-position: center; ">
       <div class="Overlay" style="width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.2);">
-        <img src="Website logo JSC.png" alt="" style="max-width: 10%; margin-left: 15px; margin-top: 15px;">
+        <img class="Logo" src="Website logo JSC.png" alt="" style="margin-left: 15px; margin-top: 15px;">
       </div>
     </div>
 
@@ -61,10 +61,13 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script type="text/javascript">
       $(window).resize(function() {
-        if ($('#WhoWeAreDiv').height() > ($(window).width() / 2) + 1) {
+        if ($('#WhoWeAreDiv').height() > ($(window).width() / 2)) {
           document.getElementById('FAQDiv').style.width = '100vw';
         } else {
           document.getElementById('FAQDiv').style.width = '50vw';
+        }
+        if($('#FAQDiv').width() == ($(window).width() / 2)) {
+          document.getElementById('FAQDiv').style.height = '100vw';
         }
       })
     </script>
