@@ -61,7 +61,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script type="text/javascript">
       $(window).resize(function() {
-        if (($('#WhoWeAreDiv').height() > ($(window).width() / 2)) && ($('#WhoWeAreDiv').width() == ($(window).width() / 2))) {
+        if ($('#WhoWeAreDiv').height() > ($(window).width() / 2) + 1) {
           document.getElementById('FAQDiv').style.width = '100vw';
         } else {
           document.getElementById('FAQDiv').style.width = '50vw';
