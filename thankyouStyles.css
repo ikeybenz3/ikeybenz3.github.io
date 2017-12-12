@@ -1,7 +1,6 @@
+
 body {
   font-family: MyFont;
-  max-width: 1090pt;
-  margin-bottom: 20pt;
 }
 h1,h2,h3 {
   color: #1070b5;
@@ -23,6 +22,12 @@ h3 {
 p {
   font-size: 18pt;
 }
+.Content {
+  width: 100%;
+  max-width: 1010pt;
+  min-width: 450pt;
+  margin: auto;
+}
 .TextContainer {
   width: 90%;
   margin-left: 5%;
@@ -37,7 +42,6 @@ p {
   width: 100%;
   height: 75pt;
   text-align: center;
-
 }
 .ThemeButton {
   -webkit-border-radius: 28;
@@ -50,7 +54,7 @@ p {
   padding: 10px 20px 10px 20px;
   border: solid black 2px;
   text-decoration: none;
-  transition: 0.5s;
+  transition: 0.3s;
 }
 .ThemeButton:hover {
   background: #1070b5;
