@@ -3,6 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:image" content="Website logo JSC.png">
     <link rel="stylesheet" href="styles.css">
     <title>JSC</title>
   </head>
@@ -60,7 +61,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script type="text/javascript">
       $(window).resize(function() {
-        if ($('#WhoWeAreDiv').height() > ($(window).width() / 2)) {
+        if (($('#WhoWeAreDiv').height() > ($(window).width() / 2)) && ($('#WhoWeAreDiv').width() == ($(window).width() / 2))) {
           document.getElementById('FAQDiv').style.width = '100vw';
         } else {
           document.getElementById('FAQDiv').style.width = '50vw';
@@ -71,13 +72,14 @@
     <div class="BottomContent">
       <div class="GalleryPreview">
         <div class="Overlay" style="position:relative; width: 100%; height: 100%; background-color: rgba(0,0,0, 0.5)">
-          <div class="GalAnchor" style="width: 100%; height: 100%; text-align: center;">
-            <a style="margin-top: 30%; font-family: Fancy; font-size: 4vw; color: white;" href="Gallery/">JSC Image Gallery</a>
+          <div class="GalAnchorContainer" style="width: 100%; height: 100%; text-align: center; display: table;">
+            <a href="Gallery/">JSC Image Gallery</a>
           </div>
         </div>
       </div>
       <div class="Footer">
-        <h1 style="line-height: 2vw;">Copyright JSC 2017 | jscinfo@gmail.com</h1>
+
+        <h1 style="line-height: 2vw;">&copy JSC 2017 | <a href="mailto:info@jerseysurfcampllc.com">info@jerseysurfcampllc.com</a></h1>
       </div>
     </div>
 
