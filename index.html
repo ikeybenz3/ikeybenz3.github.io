@@ -16,7 +16,7 @@
     </div>
 
 
-    <div class="CheckerBoard">
+    <div class="CheckerBoard" id="CheckerBoardContainer">
       <div class="WhoWeAre" style="height: auto;" id="WhoWeAreDiv">
         <h6 style="color: #a7a9ac; margin-top: 3%; font-family: MyFontBold; line-height: 1;">OUR MISSION</h6>
         <h1 style="font-family: Fancy; line-height: 1;">Changing lives, one wave at a time.</h1>
@@ -38,7 +38,7 @@
         </div>
 
       </div>
-      <div class="Apparel" style="background-image: url(Apparel.jpg); background-size: cover; background-position: cover;">
+      <div class="Apparel" id="ApparelDiv" style="background-image: url(Apparel.jpg); background-size: cover; background-position: cover;">
         <div class="Overlay" style="width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.3)">
           <div style="margin-top: 10%; width: 100%; text-align: center;">
             <h1 style="font-family: Fancy; color: white; font-size: 40px;">JSC Apparel</h1>
@@ -61,16 +61,22 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script type="text/javascript">
       $(window).resize(function() {
+        resizeShit();
+      })
+      function resizeShit() {
         if ($('#WhoWeAreDiv').height() > ($(window).width() / 2)) {
           document.getElementById('FAQDiv').style.width = '100vw';
         } else {
           document.getElementById('FAQDiv').style.width = '50vw';
         }
-        if($('#WhoWeAreDiv').width() == '100vw') {
-          document.getElementById('FAQDiv').style.height = 'auto';
+        if ($('#CheckerBoardContainer').width() == $('#WhoWeAreDiv').width()) {
+          document.getElementById('FAQDiv').style.height = '500px';
+        } else {
+          document.getElementById('FAQDiv').style.height = $('#ApparelDiv').height();
         }
-      })
+      }
       $(document).ready(function() {
+        resizeShit();
         setTimeout(resizeLogo, 2000);
       })
       function resizeLogo() {

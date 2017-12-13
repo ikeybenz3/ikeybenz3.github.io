@@ -10,9 +10,9 @@ body {
 .Logo {
   height: 75%;
   margin-top: calc(25% / 2);
-  -webkit-transition: 0.7s;
-  -moz-transition: 0.7s;
-  transition: 0.7s;
+  -webkit-transition: 1s;
+  -moz-transition: 1s;
+  transition: 1s;
 }
 .CheckerBoard {
   width: 100%;
