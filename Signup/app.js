@@ -135,7 +135,7 @@ function uploadData() {
     $.ajax({
       url: "https://docs.google.com/forms/d/e/1FAIpQLSfuyDUQfO2QuB43DE5I9BBa013P3-uJWf5Gx1fWj0LPUjG6TQ/formResponse",
       data: {"entry.1848769469":fullName, "entry.897201892":email, "entry.1720437000":birthday, "entry.2046497122":gender, "entry.1415828457":term, "entry.678565997":weeks, "entry.362961921":days, "entry.1269116078":payment}, type:"POST", dataType:"xml",
-      statusCode: {0: afterSubmitHandler(payment, term)}
+      statusCode: {0: afterSubmitHandler(payment, term), 200: afterSubmitHandler(payment, term)}
     });
       document.getElementById('submitButton').style.display = 'none';
   } else {
@@ -144,7 +144,6 @@ function uploadData() {
 
 }
 function allInputsAreFilledOut() {
-  console.log("Checking All Input Fields.")
   const textIds = ['userFullName', 'userEmail', 'day', 'month', 'year']
   for (i in textIds) {if (document.getElementById(textIds[i]).value == "") {return false;}}
   if (!$('#gender-male').prop('checked') && !$('#gender-female').prop('checked')) {return false;}
@@ -167,18 +166,21 @@ function allInputsAreFilledOut() {
   return true;
 }
 function afterSubmitHandler(paymentPreference, term) {
-  if (paymentPreference == 'Paid Online') {
-    alert("Thanks for signing up for JSC!\nWe are now redirecting you to a secure payment page for payment.")
-    if (term == "Day") {
-      document.getElementById('dailyPaymentForm').submit();
-    } else if (term == "Week") {
-      document.getElementById('weeklyPaymentForm').submit();
-    } else if (term == "Full Summer") {
-      document.getElementById('fullSummerPaymentForm').submit();
+  setTimeout(function() {
+    if (paymentPreference == 'Paid Online') {
+      alert("Thanks for signing up for JSC!\nWe are now redirecting you to a secure payment page for payment.")
+      if (term == "Day") {
+        document.getElementById('dailyPaymentForm').submit();
+      } else if (term == "Week") {
+        document.getElementById('weeklyPaymentForm').submit();
+      } else if (term == "Full Summer") {
+        document.getElementById('fullSummerPaymentForm').submit();
+      }
+    } else {
+      window.location.replace("../thankyou.html")
     }
-  } else {
-    window.location.replace("../thankyou.html")
-  }
+  }, 1000)
+
 }
 function toggleSubmitButton() {
   const submitButton = document.getElementById('submitButton');
