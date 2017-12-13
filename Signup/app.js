@@ -178,6 +178,7 @@ function afterSubmitHandler(paymentPreference, term) {
       }
     } else {
       window.location.replace("../thankyou.html")
+      alert("Thanks for signing up for JSC!\nPlease read the following information thoroughly prior to attending camp.\nThank You!")
     }
   }, 1000)
 
