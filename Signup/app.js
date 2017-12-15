@@ -2,8 +2,24 @@ $(document).ready(function() {
   $('input[type=radio]').click(toggleDropDownState);
   $('input[type=checkbox]').click(calculateTermPrice);
   $('input[name=week]').click(ifOnlyOneWeekCanBeSelected);
-  $('input[name=payment-method]').click(toggleSubmitButton);
-  $('input[value=full-summer]').click(function() {document.getElementById('priceTag').innerHTML = `Total: $3089.91`})
+  $('input[name=payment-method]').click(function () {
+    toggleSubmitButton();
+    if ($('input[value=full-summer]').prop('checked') && $('#payment-method-atCamp').prop('checked')) {
+      document.getElementById('priceTag').innerHTML = `Total: $3089.91 *Must be paid in full by May 1st`;
+    } else if ($('input[value=full-summer]').prop('checked')) {
+      document.getElementById('priceTag').innerHTML = `Total: $3089.91`;
+    }
+  });
+  $('input[value=full-summer]').click(function() {
+    if ($('input[value=full-summer]').prop('checked') && $('#payment-method-atCamp').prop('checked')) {
+      document.getElementById('priceTag').innerHTML = `Total: $3089.91 *Must be paid in full by May 1st`;
+    } else {
+      document.getElementById('priceTag').innerHTML = `Total: $3089.91`;
+    }
+  })
+
+
+
 })
 
 function toggleDropDownState() {
@@ -129,6 +145,7 @@ function uploadData() {
 
   if ($('#payment-method-atCamp').prop("checked")) {
     payment = "At Camp"
+
   }
 
   if (allInputsAreFilledOut()) {
