@@ -109,7 +109,7 @@ function ifOnlyOneWeekCanBeSelected() {
 function uploadData() {
   var fullName = $('#userFullName').val();
   var email = $('#userEmail').val();
-  var birthday = `${$('#day').val()}/${$('#month').val()}/${$('#year').val()}`;
+  var birthday = `${$('#month').val()}/${$('#day').val()}/${$('#year').val()}`;
   var gender = "Male";
   var term = "Full Summer"
   var weeks = ""
