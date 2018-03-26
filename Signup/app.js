@@ -17,9 +17,6 @@ $(document).ready(function() {
       document.getElementById('priceTag').innerHTML = `Total: $3089.91`;
     }
   })
-
-
-
 })
 
 function toggleDropDownState() {

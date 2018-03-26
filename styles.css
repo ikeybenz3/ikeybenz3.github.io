@@ -60,6 +60,7 @@ body {
 }
 .FAQs {
    background-color: #1070b5;
+   width: 100%;
 }
 
 .ThemeButton {
@@ -121,6 +122,14 @@ body {
 .GalAnchorContainer a:hover {
   font-size: 48px;
 }
+#VidContainer {
+    background-color: #222;
+}
+#VidFrame {
+    width: 100%;
+    height: calc(3600% / 64);
+    padding-top: calc(1400% / 64);
+}
 @media only screen and (max-width: 715px) {
   .Slideshow {
     height: 250px;
@@ -149,6 +158,11 @@ body {
     height: 200px;
   }
 
+  #VidFrame {
+      width: 100%;
+      height: 100%;
+      padding-top: 0px;
+  }
 }
 @font-face {
   font-family: MyFont;
