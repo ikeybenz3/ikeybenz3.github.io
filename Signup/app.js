@@ -109,6 +109,7 @@ function ifOnlyOneWeekCanBeSelected() {
 function uploadData() {
   var fullName = $('#userFullName').val();
   var email = $('#userEmail').val();
+  var phoneNumber = $('#userPhoneNumber').val();
   var birthday = `${$('#month').val()}/${$('#day').val()}/${$('#year').val()}`;
   var gender = "Male";
   var term = "Full Summer"
@@ -147,11 +148,11 @@ function uploadData() {
     payment = "At Camp"
 
   }
-
+  console.log(phoneNumber)
   if (allInputsAreFilledOut()) {
     $.ajax({
       url: "https://docs.google.com/forms/d/e/1FAIpQLSfuyDUQfO2QuB43DE5I9BBa013P3-uJWf5Gx1fWj0LPUjG6TQ/formResponse",
-      data: {"entry.1848769469":fullName, "entry.897201892":email, "entry.1720437000":birthday, "entry.2046497122":gender, "entry.1415828457":term, "entry.678565997":weeks, "entry.362961921":days, "entry.1269116078":payment}, type:"POST", dataType:"xml",
+      data: {"entry.1848769469":fullName, "entry.897201892":email, "entry.1650610961":phoneNumber,"entry.1720437000":birthday, "entry.2046497122":gender, "entry.1415828457":term, "entry.678565997":weeks, "entry.362961921":days, "entry.1269116078":payment}, type:"POST", dataType:"xml",
       statusCode: {0: afterSubmitHandler(payment, term), 200: afterSubmitHandler(payment, term)}
     });
       document.getElementById('submitButton').style.display = 'none';
@@ -161,7 +162,7 @@ function uploadData() {
 
 }
 function allInputsAreFilledOut() {
-  const textIds = ['userFullName', 'userEmail', 'day', 'month', 'year']
+  const textIds = ['userFullName', 'userEmail', 'userPhoneNumber', 'day', 'month', 'year'];
   for (i in textIds) {if (document.getElementById(textIds[i]).value == "") {return false;}}
   if (!$('#gender-male').prop('checked') && !$('#gender-female').prop('checked')) {return false;}
   if (!$('#term-full-summer').prop('checked') && !$('#term-week').prop('checked') && !$('#term-day').prop('checked')) {return false;}
@@ -194,8 +195,8 @@ function afterSubmitHandler(paymentPreference, term) {
         document.getElementById('fullSummerPaymentForm').submit();
       }
     } else {
-      window.location.replace("../thankyou.html")
-      alert("Thanks for signing up for JSC!\nPlease read the following information thoroughly prior to attending camp.\nThank You!")
+      window.location.replace("../thankyou.html");
+      alert("Thanks for signing up for JSC!\nPlease read the following information thoroughly prior to attending camp.\nThank You!");
     }
   }, 1000)
 
