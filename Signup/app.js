@@ -145,7 +145,6 @@ function uploadData() {
     payment = "At Camp"
 
   }
-  console.log(phoneNumber)
   if (allInputsAreFilledOut()) {
     $.ajax({
       url: "https://docs.google.com/forms/d/e/1FAIpQLSfuyDUQfO2QuB43DE5I9BBa013P3-uJWf5Gx1fWj0LPUjG6TQ/formResponse",
