@@ -3,7 +3,8 @@ from PIL import Image
 
 def removeVideos(images):
     for image in images:
-        if image[-4:] == ".mov" or image == ".DS_Store":
+        if image[-4:] == ".mov" or image == ".DS_Store" or image[-4:] == ".m4v":
+            print('Removed Image:', image)
             images.pop(images.index(image))
 
 def biggestHeightRatio(images):
