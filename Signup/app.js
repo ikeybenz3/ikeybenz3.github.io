@@ -8,6 +8,7 @@ $(document).ready(function() {
       document.getElementById('priceTag').innerHTML = `Total: $3089.91 *Must be paid in full by May 1st`;
     } else if ($('input[value=full-summer]').prop('checked')) {
       document.getElementById('priceTag').innerHTML = `Total: $3089.91`;
+      $('#paymentAmount').val('308991');
     }
   });
   $('input[value=full-summer]').click(function() {
@@ -15,6 +16,7 @@ $(document).ready(function() {
       document.getElementById('priceTag').innerHTML = `Total: $3089.91 *Must be paid in full by May 1st`;
     } else {
       document.getElementById('priceTag').innerHTML = `Total: $3089.91`;
+      $('#paymentAmount').val('308991');
     }
   })
 })
@@ -59,7 +61,7 @@ function calculateTermPrice() {
     }
     price = weeksChecked * 360;
     // Set Paypal Daily Payment Form To Appropriate Amount Of Days
-    document.getElementById('weekFormSelect').selectedIndex = weeksChecked - 1;
+    //document.getElementById('weekFormSelect').selectedIndex = weeksChecked - 1;
 
   } else if ($('#term-day').prop("checked")) {
     const days = ['mon', 'tue', 'wed', 'thur', 'fri'];
@@ -71,7 +73,7 @@ function calculateTermPrice() {
     }
     price = daysChecked * 80;
     // Set Paypal Daily Payment Form To Appropriate Amount Of Days
-    document.getElementById('dayFormSelect').selectedIndex = daysChecked - 1;
+    //document.getElementById('dayFormSelect').selectedIndex = daysChecked - 1;
   }
   // Add Processing Charges To Bill
   if (price == 80) {price = 82.70;}
@@ -88,7 +90,9 @@ function calculateTermPrice() {
   else if (price == 2880) {price = 2966.32}
   else if (price == 3000) {price = 3089.91}
 
-  document.getElementById('priceTag').innerHTML = `Total: $${price}`
+  document.getElementById('priceTag').innerHTML = `Total: $${price}`;
+  $('#paymentAmount').val(`${price * 100}`);
+
   return price
 }
 function ifOnlyOneWeekCanBeSelected() {
@@ -149,7 +153,7 @@ function uploadData() {
     $.ajax({
       url: "https://docs.google.com/forms/d/e/1FAIpQLSfuyDUQfO2QuB43DE5I9BBa013P3-uJWf5Gx1fWj0LPUjG6TQ/formResponse",
       data: {"entry.1848769469":fullName, "entry.897201892":email, "entry.1650610961":phoneNumber,"entry.1720437000":birthday, "entry.2046497122":gender, "entry.1415828457":term, "entry.678565997":weeks, "entry.362961921":days, "entry.1269116078":payment}, type:"POST", dataType:"xml",
-      statusCode: {0: afterSubmitHandler(payment, term), 200: afterSubmitHandler(payment, term)}
+      statusCode: {0: console.log('idk, status code 0?'), 200: afterSubmitHandler(payment, term)}
     });
       document.getElementById('submitButton').style.display = 'none';
   } else {
@@ -179,17 +183,40 @@ function allInputsAreFilledOut() {
 
   return true;
 }
+// For Stripe
+var handler = StripeCheckout.configure({
+  key: 'pk_live_Vek1WDHXK9AjMQcZJxaQSVEY',
+  image: '../LogoWithWhite.png',
+  locale: 'auto',
+  token: function(tkn) {
+    let amnt = $('#paymentAmount').val();
+    $.ajax({
+      url: `https://jsc-payment-processor.herokuapp.com/charge`, 
+      data: {token: tkn.id, amount: amnt},
+      statusCode: {
+        200: function() {
+          alert('Payment Succeeded\nPlease sign the following waiver to complete your signup.');
+          window.location.replace('https://waiver.fr/p-FuRDa');
+        },
+        500: function() {
+          alert('Something went wrong.');
+        }
+      }
+    });
+  }  
+});
+window.addEventListener('popstate', function() {
+  handler.close();
+});
 function afterSubmitHandler(paymentPreference, term) {
   setTimeout(function() {
     if (paymentPreference == 'Paid Online') {
-      alert("Thanks for signing up for JSC!\nWe are now redirecting you to a secure payment page for payment.")
-      if (term == "Day") {
-        document.getElementById('dailyPaymentForm').submit();
-      } else if (term == "Week") {
-        document.getElementById('weeklyPaymentForm').submit();
-      } else if (term == "Full Summer") {
-        document.getElementById('fullSummerPaymentForm').submit();
-      }
+      let amnt = $('#paymentAmount').val();
+      handler.open({
+        name: 'Jersey Surf Camp LLC',
+        description: 'Camper Payment',
+        amount: amnt
+      });
     } else {
       window.location.replace("../thankyou.html");
       alert("Thanks for signing up for JSC!\nPlease read the following information thoroughly prior to attending camp.\nThank You!");
