@@ -1,5 +1,5 @@
 var stripeHandler = StripeCheckout.configure({
-    key: 'pk_test_7SUm09ALRfFancxuaTdh8TJC',
+    key: 'pk_live_Vek1WDHXK9AjMQcZJxaQSVEY',
     image: '../LogoWithWhite.png',
     locale: 'auto',
     token: function(tkn) {
