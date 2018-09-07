@@ -1,27 +1,27 @@
 <!DOCTYPE html>
 
 <!-- Project Developed By Isaac Benzaken -->
-<html >
-<head>
-  <meta charset="UTF-8">
-  <title>JSC Sign Up</title>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>JSC Sign Up</title>
 
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
-  <link rel='stylesheet prefetch' href='http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css'>
-  <link rel="stylesheet" href="css/style.css">
-  <script src="https://checkout.stripe.com/checkout.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="app.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+    <link rel='stylesheet prefetch' href='http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css'>
+    <link rel="stylesheet" href="css/secondTry.css">
+    <script src="https://checkout.stripe.com/checkout.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="newApp.js"></script>
 
-</head>
+  </head>
 
 <body>
 
-<div class="container">
+<!-- <div class="container">
   <form>
     <div class="row">
-      <h4>JSC Sign Up</h4>
-      <div class="input-group input-group-icon">
+      <h4>JSC Full Summer 2018</h4> -->
+      <!-- <div class="input-group input-group-icon">
         <input class="textInput" id="userFullName" name="fullName" type="text" placeholder="Full Name"/>
         <div class="input-icon"><i class="fa fa-user"></i></div>
       </div>
@@ -32,9 +32,9 @@
       <div class="input-group input-group-icon">
         <input class="textInput" id="userPhoneNumber" name="phone" type="phone" placeholder="Phone Number"/>
         <div class="input-icon"><i class="fa fa-phone"></i></div>
-      </div>
-    </div>
-    <div class="row">
+      </div> -->
+    <!-- </div> -->
+    <!-- <div class="row">
       <div class="col-half">
         <h4>Date of Birth</h4>
         <div class="input-group">
@@ -58,8 +58,8 @@
           <label for="gender-female">Female</label>
         </div>
       </div>
-    </div>
-    <div class="row">
+    </div> -->
+    <!-- <div class="row">
       <h4>Term</h4>
       <div class="input-group">
         <input class="term-selection" style="width: 33.33333333%" type="radio" name="term" value="full-summer" id="term-full-summer">
@@ -115,27 +115,25 @@
         </div>
       </div>
 
-    </div>
-    <div class="row">
-      <h4>Payment Details</h4>
-      <div class="input-group">
-        <input type="radio" name="payment-method" value="online" id="payment-method-online"/>
-        <label for="payment-method-online">Paying Online</label>
-        <input type="radio" name="payment-method" value="atCamp" id="payment-method-atCamp"/>
-        <label for="payment-method-atCamp">Paying At Camp</label>
-      </div>
-    </div>
-    <div class="row">
-      <h4 id="priceTag">Total: $0.00</h4>
-    </div>
+    </div> -->
+    <!-- </form>
+</div> -->
+  <input type="hidden" id="paymentAmount" value="308991">
 
-    <div class="row">
-      <button type="button" name="button" onclick="uploadData()" id="submitButton">Submit</button>
-    </div>
-  </form>
-</div>
-  <input type="hidden" id="paymentAmount" value="000">
-  <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+  <h2>JSC Summer 2018 Signup</h2>
+
+  <h3>We are currently accepting full time camper signups for summer 2018! Camp this year will run from June 24 - August 23rd with an optional bonus week from August 26 - August 30.</h3>
+
+  <h3>Camp for full summer campers is $3,000<small>*</small> for the summer. Bonus week is $450 but full time campers get a $150 discount.<br>
+  <small>* Plus Processing</small></h3>
+
+  <h3>Signing up is a two step process. Once you pay with Stripe you'll be redirected to our JSC waiver. No signup is considered without this waiver.</h3>
+
+  <label><input type="checkbox" id="bonusWeek"> Include bonus week in signup</label>
+
+  <h4>Total: <span id="total">$3,089.91</span></h4>
+
+  <button onclick="showStripeForm()">Continue to Payment</button>
 
 </body>
 </html>

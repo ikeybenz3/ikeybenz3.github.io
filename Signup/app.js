@@ -3,13 +3,10 @@ $(document).ready(function() {
   $('input[type=checkbox]').click(calculateTermPrice);
   $('input[name=week]').click(ifOnlyOneWeekCanBeSelected);
   $('input[name=payment-method]').click(function () {
-    toggleSubmitButton();
-    if ($('input[value=full-summer]').prop('checked') && $('#payment-method-atCamp').prop('checked')) {
+    if ($('input[value=full-summer]').prop('checked')) {
       document.getElementById('priceTag').innerHTML = `Total: $3089.91 *Must be paid in full by May 1st`;
-    } else if ($('input[value=full-summer]').prop('checked')) {
-      document.getElementById('priceTag').innerHTML = `Total: $3089.91`;
-      $('#paymentAmount').val('308991');
     }
+    showStripeForm();
   });
   $('input[value=full-summer]').click(function() {
     if ($('input[value=full-summer]').prop('checked') && $('#payment-method-atCamp').prop('checked')) {
@@ -60,9 +57,6 @@ function calculateTermPrice() {
       }
     }
     price = weeksChecked * 360;
-    // Set Paypal Daily Payment Form To Appropriate Amount Of Days
-    //document.getElementById('weekFormSelect').selectedIndex = weeksChecked - 1;
-
   } else if ($('#term-day').prop("checked")) {
     const days = ['mon', 'tue', 'wed', 'thur', 'fri'];
     let daysChecked = 0;
@@ -72,8 +66,6 @@ function calculateTermPrice() {
       }
     }
     price = daysChecked * 80;
-    // Set Paypal Daily Payment Form To Appropriate Amount Of Days
-    //document.getElementById('dayFormSelect').selectedIndex = daysChecked - 1;
   }
   // Add Processing Charges To Bill
   if (price == 80) {price = 82.70;}
@@ -208,22 +200,30 @@ var handler = StripeCheckout.configure({
 window.addEventListener('popstate', function() {
   handler.close();
 });
-function afterSubmitHandler(paymentPreference, term) {
-  setTimeout(function() {
-    if (paymentPreference == 'Paid Online') {
-      let amnt = $('#paymentAmount').val();
-      handler.open({
-        name: 'Jersey Surf Camp LLC',
-        description: 'Camper Payment',
-        amount: amnt
-      });
-    } else {
-      window.location.replace("../thankyou.html");
-      alert("Thanks for signing up for JSC!\nPlease read the following information thoroughly prior to attending camp.\nThank You!");
-    }
-  }, 1000)
-
+function showStripeForm() {
+  let amnt = $('#paymentAmount').val();
+  handler.open({
+    name: 'Jersey Surf Camp LLC',
+    description: 'Camper Payment',
+    amount: amnt
+  });
 }
+// function afterSubmitHandler(paymentPreference, term) {
+//   setTimeout(function() {
+//     if (paymentPreference == 'Paid Online') {
+//       let amnt = $('#paymentAmount').val();
+//       handler.open({
+//         name: 'Jersey Surf Camp LLC',
+//         description: 'Camper Payment',
+//         amount: amnt
+//       });
+//     } else {
+//       window.location.replace("../thankyou.html");
+//       alert("Thanks for signing up for JSC!\nPlease read the following information thoroughly prior to attending camp.\nThank You!");
+//     }
+//   }, 1000)
+
+// }
 function toggleSubmitButton() {
   const submitButton = document.getElementById('submitButton');
   if ($('#payment-method-atCamp').prop("checked")) {

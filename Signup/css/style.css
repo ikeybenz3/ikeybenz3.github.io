@@ -14,8 +14,7 @@ h4 {
   color: #1070b5;
 }
 input,
-input[type="radio"] + label,
-input[type="checkbox"] + label:before,
+input[type="radio"] + label, /* input[type="checkbox"] + label:before, */
 select option,
 select {
   width: 100%;
@@ -68,7 +67,7 @@ select:focus,
 select:active {
   background-color: #1070b5;
   color: #fff;
-  border-color: #;
+  border-color: #1070b5;
 }
 
 input[type="checkbox"] {
