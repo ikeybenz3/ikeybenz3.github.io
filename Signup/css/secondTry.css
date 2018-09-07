@@ -11,6 +11,9 @@ h3 {
 label {
     font-weight: 500;
 }
+#bonusWeek {
+    margin-top: 40px;
+}
 button {
     width: 70%;
     margin-left: 15%;
