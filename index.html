@@ -2,114 +2,168 @@
 <html>
 
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta property="og:image" content="LogoWithWhite.png">
-  <link rel="stylesheet" href="styles.css">
-  <title>JSC</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:image" content="LogoWithWhite.png">
+    <link rel="stylesheet" href="styles.css">
+    <title>JSC</title>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
 </head>
 
 <body>
 
-  <div class="Slideshow" style="background-image: url(NewTopImage.JPG); background-size: cover; background-position: 50% 35%;">
-    <div class="Overlay" style="width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.2);">
-      <img id="LogoImg" class="Logo" src="Logo.png" alt="" style="margin-left: 15px; margin-top: 15px;">
+    <div class="banner">
+        <p><strong style="font-weight: bolder;">Sign up</strong> for <span class="ThemeButton" id="bonus-week">Bonus
+                Week</span></p>
+        <script src="https://checkout.stripe.com/checkout.js"></script>
+        <script>
+            const stripeHandler = StripeCheckout.configure({
+                key: 'pk_live_Vek1WDHXK9AjMQcZJxaQSVEY',
+                image: 'LogoWithWhite.png',
+                locale: 'auto',
+                token: function (tkn) {
+                    $.ajax({
+                        url: `https://jsc-payment-processor.herokuapp.com/charge`,
+                        data: { token: tkn.id, amount: 46350 },
+                        statusCode: {
+                            200: () => {
+                                alert('Payment Succeeded\nPlease sign the following waiver to complete your signup.');
+                                window.location.replace('https://waiver.fr/p-4WyUT');
+                            },
+                            500: () => { alert('Payment Failed\nSomething went wrong.') }
+                        }
+                    });
+                }
+            });
+            $(document).ready(() => {
+                $('#bonus-week').click(() => stripeHandler.open({
+                    name: "JSC Bonus Week 2019",
+                    description: "August 19-23, $450 + tax",
+                    amount: 46350
+                }));
+            });
+        </script>
     </div>
-  </div>
 
-
-  <div class="CheckerBoard" id="CheckerBoardContainer">
-    <div class="WhoWeAre" style="height: auto;" id="WhoWeAreDiv">
-      <h6 style="color: #a7a9ac; margin-top: 3%; font-family: MyFontBold; line-height: 1;">OUR MISSION</h6>
-      <h1 style="font-family: Fancy; line-height: 1;">Changing lives, one wave at a time.</h1>
-      <h3 style="width: 90%; font-family: MyFont; color: #1070b5;">Sheila Matut and Geri Cohen are the Co-Founders of
-        JSC.</h3>
-      <h3 style="width: 90%; font-family: MyFont; color: #1070b5;">They have been surfing for 8 years and are inspired
-        by what the surf culture has to offer.</h3>
-      <h3 style="width: 90%; font-family: MyFont; color: #1070b5;">While being immersed in their upbringing in Deal New
-        Jersey, their older brothers prompted their passion for surfing.</h3>
-      <h3 style="width: 90%; font-family: MyFont; color: #1070b5;">They spend a lot of their time year round in the
-        water, and want to share the passion surfing gave them with their campers.</h3>
-      <p style="bottom: 0; font-family: MyFont;">Geri and Sheila are both Red Cross certified lifeguards and ensure
-        their campers will be completely taken care of in and out of the water.</p>
+    <div class="Slideshow"
+        style="background-image: url(NewTopImage.JPG); background-size: cover; background-position: 50% 35%;">
+        <div class="Overlay" style="width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.2);">
+            <img id="LogoImg" class="Logo" src="Logo.png" alt="" style="margin-left: 15px; margin-top: 15px;">
+        </div>
     </div>
 
-    <div class="Fill" style="background-image: url(Gallery/Images/15.JPG); background-size: cover; background-position: center;">
-      <div class="Overlay" style="width:100%; height: 100%;">
-        <h4 style="font-family: MyFont; width: 100%; text-align: center; color: white; line-height: 1; margin-top: 13%;">A
-          Great Summer Awaits.</h4>
-        <h1 style="font-family: Fancy; width: 100%; margin-left: 0px; text-align: center; color: white; line-height: 1; font-size: 40px;">JSC</h1>
-        <div style="width: 100%; text-align: center; margin-top: 10px">
-          <a href="Signup/index.html" class="ThemeButton">Sign Up</a>
+
+    <div class="CheckerBoard" id="CheckerBoardContainer">
+        <div class="WhoWeAre" style="height: auto;" id="WhoWeAreDiv">
+            <h6 style="color: #a7a9ac; margin-top: 3%; font-family: MyFontBold; line-height: 1;">OUR MISSION</h6>
+            <h1 style="font-family: Fancy; line-height: 1;">Changing lives, one wave at a time.</h1>
+            <h3 style="width: 90%; font-family: MyFont; color: #1070b5;">Sheila Matut and Geri Cohen are the Co-Founders
+                of
+                JSC.</h3>
+            <h3 style="width: 90%; font-family: MyFont; color: #1070b5;">They have been surfing for 8 years and are
+                inspired
+                by what the surf culture has to offer.</h3>
+            <h3 style="width: 90%; font-family: MyFont; color: #1070b5;">While being immersed in their upbringing in
+                Deal New
+                Jersey, their older brothers prompted their passion for surfing.</h3>
+            <h3 style="width: 90%; font-family: MyFont; color: #1070b5;">They spend a lot of their time year round in
+                the
+                water, and want to share the passion surfing gave them with their campers.</h3>
+            <p style="bottom: 0; font-family: MyFont;">Geri and Sheila are both Red Cross certified lifeguards and
+                ensure
+                their campers will be completely taken care of in and out of the water.</p>
         </div>
 
-      </div>
+        <div class="Fill"
+            style="background-image: url(Gallery/Images/15.JPG); background-size: cover; background-position: center;">
+            <div class="Overlay" style="width:100%; height: 100%;">
+                <h4
+                    style="font-family: MyFont; width: 100%; text-align: center; color: white; line-height: 1; margin-top: 13%;">
+                    A
+                    Great Summer Awaits.</h4>
+                <h1
+                    style="font-family: Fancy; width: 100%; margin-left: 0px; text-align: center; color: white; line-height: 1; font-size: 40px;">
+                    JSC</h1>
+                <div style="width: 100%; text-align: center; margin-top: 10px">
+                    <a href="Signup/index.html" class="ThemeButton">Sign Up</a>
+                </div>
 
-    </div>
-    <div class="Apparel" id="ApparelDiv" style="background-image: url(Apparel.jpg); background-size: cover; background-position: cover;">
-      <div class="Overlay" style="width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.3)">
-        <div style="margin-top: 10%; width: 100%; text-align: center;">
-          <h1 style="font-family: Fancy; color: white; font-size: 40px;">JSC Apparel</h1>
-          <a style="line-height: 3.5; margin-bottom: 100px;" href="#" class="ThemeButton" onclick="return false;">Coming
-            Soon</a>
+            </div>
+
         </div>
-      </div>
-    </div>
-    <div id="VidContainer">
-      <iframe id="VidFrame" src="https://player.vimeo.com/video/313869791" frameborder="0" webkitallowfullscreen
-        mozallowfullscreen allowfullscreen></iframe>
-    </div>
-  </div>
-  <div class="FAQs" id="FAQDiv">
-    <h3 style="font-family: MyFontBold; color: #17F0E4; margin-left: 5%; margin-top: 0px; padding-top: 15px;">Frequently
-      Asked Questions</h3>
-    <div class="QuestionAnswerContainer" style="width: 80%; margin-left: 7%;">
-      <h3>I'm very unathletic and I hear you need to be athletic to learn surfing, is this true?</h3>
-      <h1 style="margin-bottom: 8%; line-height: 1em;">Of course not! Anyone can learn to surf.</h1>
-      <div style="margin-left: 4%; margin-top: 5%; padding-bottom:50px;"><a href="thankyou.html" class="ThemeButton">More
-          Information &#x2192</a></div>
-    </div>
-  </div>
-
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script type="text/javascript">
-    $(window).resize(function () {
-      resizeStuff();
-    })
-    function resizeStuff() {
-      const videoContainer = document.getElementById('VidContainer');
-      const videoFrame = document.getElementById('VidFrame');
-      if ($('#WhoWeAreDiv').height() > ($(window).width() / 2)) {
-        videoContainer.style.width = '100vw';
-        videoContainer.style.height = 'calc(3600vw / 64)';
-      } else {
-        videoContainer.style.width = '50%';
-        videoContainer.style.height = '50vw';
-      }
-
-    }
-    $(document).ready(function () {
-      resizeStuff();
-      setTimeout(resizeLogo, 2000);
-    })
-    function resizeLogo() {
-      document.getElementById('LogoImg').style.height = '40%';
-      document.getElementById('LogoImg').style.marginTop = '20px';
-    }
-  </script>
-
-  <div class="BottomContent">
-    <div class="GalleryPreview">
-      <div class="Overlay" style="position:relative; width: 100%; height: 100%; background-color: rgba(0,0,0, 0.5)">
-        <div class="GalAnchorContainer" style="width: 100%; height: 100%; text-align: center; display: table;">
-          <a href="Gallery/">JSC Image Gallery</a>
+        <div class="Apparel" id="ApparelDiv"
+            style="background-image: url(Apparel.jpg); background-size: cover; background-position: cover;">
+            <div class="Overlay" style="width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.3)">
+                <div style="margin-top: 10%; width: 100%; text-align: center;">
+                    <h1 style="font-family: Fancy; color: white; font-size: 40px;">JSC Apparel</h1>
+                    <a style="line-height: 3.5; margin-bottom: 100px;" href="#" class="ThemeButton"
+                        onclick="return false;">Coming
+                        Soon</a>
+                </div>
+            </div>
         </div>
-      </div>
+        <div id="VidContainer">
+            <iframe id="VidFrame" src="https://player.vimeo.com/video/313869791" frameborder="0" webkitallowfullscreen
+                mozallowfullscreen allowfullscreen></iframe>
+        </div>
     </div>
-    <div class="Footer">
-      <h1 style="line-height: 2vw;">&copy JSC 2017 | <a href="mailto:info@jerseysurfcampllc.com">info@jerseysurfcampllc.com</a></h1>
+    <div class="FAQs" id="FAQDiv">
+        <h3 style="font-family: MyFontBold; color: #17F0E4; margin-left: 5%; margin-top: 0px; padding-top: 15px;">
+            Frequently
+            Asked Questions</h3>
+        <div class="QuestionAnswerContainer" style="width: 80%; margin-left: 7%;">
+            <h3>I'm very unathletic and I hear you need to be athletic to learn surfing, is this true?</h3>
+            <h1 style="margin-bottom: 8%; line-height: 1em;">Of course not! Anyone can learn to surf.</h1>
+            <div style="margin-left: 4%; margin-top: 5%; padding-bottom:50px;"><a href="thankyou.html"
+                    class="ThemeButton">More
+                    Information &#x2192</a></div>
+        </div>
     </div>
-  </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript">
+        $(window).resize(function () {
+            resizeStuff();
+        })
+        function resizeStuff() {
+            const videoContainer = document.getElementById('VidContainer');
+            const videoFrame = document.getElementById('VidFrame');
+            if ($('#WhoWeAreDiv').height() > ($(window).width() / 2)) {
+                videoContainer.style.width = '100vw';
+                videoContainer.style.height = 'calc(3600vw / 64)';
+            } else {
+                videoContainer.style.width = '50%';
+                videoContainer.style.height = '50vw';
+            }
+
+        }
+        $(document).ready(function () {
+            resizeStuff();
+            setTimeout(resizeLogo, 2000);
+        })
+        function resizeLogo() {
+            document.getElementById('LogoImg').style.height = '40%';
+            document.getElementById('LogoImg').style.marginTop = '20px';
+        }
+    </script>
+
+    <div class="BottomContent">
+        <div class="GalleryPreview">
+            <div class="Overlay"
+                style="position:relative; width: 100%; height: 100%; background-color: rgba(0,0,0, 0.5)">
+                <div class="GalAnchorContainer" style="width: 100%; height: 100%; text-align: center; display: table;">
+                    <a href="Gallery/">JSC Image Gallery</a>
+                </div>
+            </div>
+        </div>
+        <div class="Footer">
+            <h1 style="line-height: 2vw;">&copy JSC 2017 | <a
+                    href="mailto:info@jerseysurfcampllc.com">info@jerseysurfcampllc.com</a></h1>
+        </div>
+    </div>
 
 
 

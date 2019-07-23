@@ -12,7 +12,7 @@ var stripeHandler = StripeCheckout.configure({
                     alert('Payment Succeeded\nPlease sign the following waiver to complete your signup.');
                     window.location.replace('https://waiver.fr/p-4WyUT');
                 },
-                500: alert('Payment Failed\nSomething went wrong.')
+                500: () => { alert('Payment Failed\nSomething went wrong.') }
             }
         });
     }
